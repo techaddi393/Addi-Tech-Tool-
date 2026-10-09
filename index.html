@@ -1,0 +1,429 @@
+here<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addi Tech Jobs AI CV Maker - Professional Portal</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background-color: #f1f5f9; margin: 0; padding: 15px; text-align: right; direction: rtl; color: #1e293b; }
+        .container { max-width: 750px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: auto; }
+        h2 { color: #2563eb; text-align: center; margin-bottom: 5px; font-size: 24px; font-weight: bold; }
+        .sub-title { text-align: center; font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        
+        .section-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .section-box h3 { margin-top: 0; color: #1e293b; font-size: 15px; border-bottom: 2px solid #2563eb; padding-bottom: 5px; }
+
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 13px; margin-bottom: 10px; }
+        
+        /* بلاگر جیسا ایڈوانسڈ ایڈیٹر ٹول بار */
+        .editor-toolbar { background: #e2e8f0; padding: 8px; border-radius: 6px 6px 0 0; display: flex; gap: 5px; flex-wrap: wrap; border: 1px solid #cbd5e1; border-bottom: none; }
+        .editor-toolbar button, .editor-toolbar select { background: white; border: 1px solid #94a3b8; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; color: #334155; }
+        .editor-toolbar button:hover { background: #2563eb; color: white; }
+        
+        .rich-editor { width: 100%; min-height: 150px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 0 0 6px 6px; box-sizing: border-box; font-size: 14px; background: white; outline: none; margin-bottom: 10px; line-height: 1.6; }
+
+        .btn { background-color: #2563eb; color: white; border: none; padding: 11px; width: 100%; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: bold; text-align: center; }
+        .btn:hover { background-color: #1d4ed8; }
+        .btn-apply { background-color: #10b981; margin-top: 8px; }
+        .btn-print { background-color: #0284c7; margin-top: 8px; }
+        .btn-back { background-color: #64748b; margin-top: 8px; }
+        .btn-admin { background-color: #7c3aed; margin-bottom: 15px; font-size: 12px; padding: 8px 15px; width: auto; display: inline-block; }
+
+        /* جاب آرٹیکل کارڈ */
+        .job-article-card { background: #eff6ff; border: 1px solid #bfdbfe; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+        .job-meta { font-size: 11px; color: #475569; background: #dbeafe; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; font-weight: bold; }
+        .article-image { width: 100%; max-height: 280px; object-fit: cover; border-radius: 6px; margin-top: 15px; display: none; }
+        
+        /* کال ٹو ایکشن باکس */
+        .cta-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px dashed #f59e0b; padding: 15px; border-radius: 8px; text-align: center; margin-top: 15px; display: none; }
+        .cta-box h4 { margin: 0 0 8px 0; color: #92400e; font-size: 15px; }
+        .cta-btn { display: inline-block; background: #d97706; color: white; padding: 8px 20px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 13px; margin-top: 5px; }
+        .cta-btn:hover { background: #b45309; }
+
+        /* پرو لیول سی وی پریویو */
+        .resume-preview { font-family: Tahoma, sans-serif; background: #fff; padding: 35px; border: 2px solid #2563eb; border-radius: 10px; margin-top: 15px; display: none; }
+        .resume-header { text-align: center; border-bottom: 3px solid #2563eb; padding-bottom: 15px; margin-bottom: 20px; }
+        .resume-section-title { color: #2563eb; font-size: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-top: 20px; margin-bottom: 8px; font-weight: bold; }
+        
+        #adminPanel { display: none; background: #faf5ff; border: 2px dashed #7c3aed; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .no-print { display: none !important; }
+            .container { box-shadow: none; padding: 0; border: none; width: 100%; max-width: 100%; }
+            .resume-preview { border: 2px solid #000; padding: 20px; margin: 0; display: block !important; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Addi Tech Jobs AI CV Maker</h2>
+    <div class="sub-title">🤖 سمارٹ جاب پورٹل، فری سی وی ایڈیٹر اور بلاگر-اسٹائل ایڈمن سوٹ</div>
+
+    <!-- ایڈمن پینل ٹوگل بٹن -->
+    <div style="text-align: center;" class="no-print">
+        <button class="btn btn-admin" onclick="toggleAdminPanel()">⚙️ بلاگر ایڈمن پینل (آرٹیکل، ہیڈنگز اور ایڈیٹر)</button>
+    </div>
+
+    <!-- 🟢 بلاگر اسٹائل ایڈمن آرٹیکل پبلشنگ پینل -->
+    <div id="adminPanel" class="no-print">
+        <h3 style="color: #7c3aed; border-bottom: 1px solid #ddd; padding-bottom:8px;">📝 بلاگر-اسٹائل آرٹیکل ایڈیٹر و پبلشر</h3>
+        
+        <label style="font-size:11px; font-weight:bold;">کیٹگری / لیبل منتخب کریں:</label>
+        <select id="admCategory">
+            <option value="wapda">⚡ واپڈا (WAPDA Jobs)</option>
+            <option value="army">🎖️ پاک آرمی (Pak Army Jobs)</option>
+            <option value="police">🛡️ پولیس ڈیپارٹمنٹ (Police Jobs)</option>
+            <option value="gov">🏛️ گورنمنٹ / فیڈرل (Government & Federal Jobs)</option>
+        </select>
+
+        <label style="font-size:11px; font-weight:bold;">میٹا ڈسکرپشن (SEO Meta Description):</label>
+        <input type="text" id="admMeta" placeholder="گوگل ایس ای او کے لیے مختصر تفصیل لکھیں...">
+
+        <label style="font-size:11px; font-weight:bold;">H1 ٹائٹل (بڑا عنوان):</label>
+        <input type="text" id="admH1" placeholder="مثلاً: محکمہ واپڈا میں نئی شاندار اسامیوں کا اعلان 2026">
+
+        <label style="font-size:11px; font-weight:bold;">H2 ذیلی سرخی (Sub-heading):</label>
+        <input type="text" id="admH2" placeholder="مثلاً: تعلیمی قابلیت اور شرائط">
+
+        <!-- بلاگر جیسا ایڈیٹر ٹول بار -->
+        <label style="font-size:11px; font-weight:bold;">آرٹیکل کا مکمل مواد (H3, Paragraph, Formatting):</label>
+        <div class="editor-toolbar">
+            <button type="button" onclick="formatText('bold')"><b>B</b></button>
+            <button type="button" onclick="formatText('italic')"><i>I</i></button>
+            <button type="button" onclick="formatText('underline')"><u>U</u></button>
+            <button type="button" onclick="formatText('formatBlock', 'H1')">H1</button>
+            <button type="button" onclick="formatText('formatBlock', 'H2')">H2</button>
+            <button type="button" onclick="formatText('formatBlock', 'H3')">H3</button>
+            <button type="button" onclick="formatText('formatBlock', 'P')">Paragraph</button>
+            <button type="button" onclick="formatText('justifyRight')">دائیں</button>
+            <button type="button" onclick="formatText('justifyCenter')">درمیان</button>
+            <button type="button" onclick="formatText('justifyLeft')">بائیں</button>
+            <input type="color" onchange="formatText('foreColor', this.value)" title="کلر تبدیل کریں" style="width:30px; height:24px; padding:0; cursor:pointer; vertical-align:middle;">
+        </div>
+        <div id="admContentEditor" class="rich-editor" contenteditable="true" placeholder="یہاں اپنا آرٹیکل لکھیں..."></div>
+
+        <label style="font-size:11px; font-weight:bold; margin-top:10px; display:block;">🖼️ گیلری سے تصویر منتخب کریں:</label>
+        <input type="file" id="admImageFile" accept="image/*" style="background:#fff;">
+
+        <label style="font-size:11px; font-weight:bold;">✨ کال ٹو ایکشن (CTA) باکس کا عنوان:</label>
+        <input type="text" id="admCtaTitle" placeholder="مثلاً: مزید سرکاری نوکریوں کے لیے یہاں کلک کریں">
+
+        <label style="font-size:11px; font-weight:bold;">🔗 کال ٹو ایکشن بٹن کا یو آر ایل (URL):</label>
+        <input type="text" id="admCtaUrl" placeholder="https://example.com">
+
+        <label style="font-size:11px; font-weight:bold;">آفیشل اپلائی کرنے کا لنک (URL):</label>
+        <input type="text" id="admUrl" placeholder="https://example.com/apply">
+
+        <button class="btn" style="background-color: #7c3aed; margin-top: 15px;" onclick="publishArticle()">🚀 آرٹیکل فوری پبلش کریں (Publish)</button>
+    </div>
+    
+    <!-- کیٹگری سلیکٹر (وزٹر کے لیے) -->
+    <div class="section-box no-print" style="background:#fffbeb; border-color:#fcd34d;">
+        <h3 style="color:#b45309; border-bottom-color:#fcd34d;">📂 جاب کی کیٹگری منتخب کریں</h3>
+        <select id="jobCategorySelect" onchange="renderSelectedCategory()">
+            <option value="wapda">⚡ واپڈا (WAPDA Jobs)</option>
+            <option value="army">🎖️ پاک آرمی (Pak Army Jobs)</option>
+            <option value="police">🛡️ پولیس ڈیپارٹمنٹ (Police Jobs)</option>
+            <option value="gov">🏛️ گورنمنٹ / فیڈرل (Government & Federal Jobs)</option>
+        </select>
+    </div>
+
+    <!-- پبلش شدہ جاب آرٹیکل ڈسপ্লে -->
+    <div class="job-article-card no-print" id="jobArticleSection">
+        <span class="job-meta" id="displayCategoryLabel">محکمہ واپڈا پاکستان</span>
+        <h1 id="displayH1" style="color: #1d4ed8; font-size: 20px; margin-top: 5px;">واپڈا میں نئی اسامیوں کا اعلان 2026</h1>
+        <h2 id="displayH2" style="color: #2563eb; font-size: 16px;">تعلیمی قابلیت اور شرائط</h2>
+        <div id="displayH3" style="font-size: 14px; line-height: 1.8; color: #334155; margin-top: 10px;">
+            واپڈا کی طرف سے نئے فنی اور غیر فنی عہدوں پر بھرتی کا آغاز کر دیا گیا ہے۔ اہل امیدوار نیچے دیے گئے فارم سے اپنی مرضی کی سی وی بنا کر اپلائی کریں۔
+        </div>
+        
+        <img id="displayArticleImage" class="article-image" alt="Job Image">
+
+        <div id="displayCtaBox" class="cta-box">
+            <h4 id="displayCtaTitle">مزید اپڈیٹس کے لیے ہمارے ساتھ جڑے رہیں</h4>
+            <a id="displayCtaBtn" class="cta-btn" href="#" target="_blank">👉 یہاں کلک کریں</a>
+        </div>
+    </div>
+
+    <!-- 🟢 پرو لیول فری سی وی ایڈیٹر فارم (وزٹر خود اپنی مرضی سے سب کچھ ٹائپ کرے گا) -->
+    <div id="formApp" class="no-print">
+        <div class="section-box" style="border-color: #2563eb; background: #f0fdf4;">
+            <h3 style="color: #15803d;">📝 پرو لیول سی وی جنریٹر (اپنی مرضی سے تفصیلات درج کریں)</h3>
+            
+            <label style="font-size:11px; font-weight:bold;">پورا نام (Full Name):</label>
+            <input type="text" id="cvName" placeholder="مثلاً: محمد علی">
+
+            <label style="font-size:11px; font-weight:bold;">والد کا نام (Father's Name):</label>
+            <input type="text" id="cvFather" placeholder="مثلاً: احمد خان">
+
+            <label style="font-size:11px; font-weight:bold;">موبایل نمبر (Mobile Number):</label>
+            <input type="text" id="cvPhone" placeholder="مثلاً: 0300-1234567">
+
+            <label style="font-size:11px; font-weight:bold;">ای میل ایڈریس (Email Address):</label>
+            <input type="text" id="cvEmail" placeholder="مثلاً: ali@email.com">
+
+            <label style="font-size:11px; font-weight:bold;">مستقل پتہ (Complete Address / City):</label>
+            <input type="text" id="cvAddress" placeholder="مثلاً: محلہ عثمانیہ، تحصیل و ضلع بھکر">
+
+            <label style="font-size:11px; font-weight:bold;">کس جاب یا پوسٹ کے لیے اپلائی کر رہے ہیں؟ (Job Title):</label>
+            <input type="text" id="cvTargetJob" placeholder="مثلاً: Junior Clerk / Line Man / Security Guard">
+
+            <label style="font-size:11px; font-weight:bold;">تعلیمی قابلیت (Education Details):</label>
+            <textarea id="cvEdu" rows="3" placeholder="یہاں اپنی تمام ڈگریاں اور تعلیمی قابلیت خود لکھیں..."></textarea>
+
+            <label style="font-size:11px; font-weight:bold;">تجربہ یا ہنر (Experience / Skills):</label>
+            <textarea id="cvExp" rows="3" placeholder="اپنا پچھلا تجربہ یا خاص ہنر خود لکھیں..."></textarea>
+        </div>
+
+        <button class="btn" onclick="generateCustomCV()">✨ اپنی پروفیشنل سی وی تیار کریں</button>
+    </div>
+
+    <!-- تیار شدہ اور فلی ایڈٹ ایبل پرو لیول سی وی پریویو -->
+    <div id="resumePreview" class="resume-preview">
+        <div class="resume-header">
+            <h2 id="rName" style="margin:0; color:#1e293b; font-size:24px;">نام</h2>
+            <p style="margin:6px 0; font-size:13px; color:#475569;">والد کا نام: <span id="rFather"></span></p>
+            <p style="margin:2px 0; font-size:12px; color:#64748b;">موبائل: <span id="rPhone"></span> | ای میل: <span id="rEmail"></span></p>
+            <p style="margin:2px 0; font-size:12px; color:#64748b;">پتہ: <span id="rAddress"></span></p>
+        </div>
+        
+        <div>
+            <div class="resume-section-title">مطلوبہ پوسٹ / پوزیشن (Applied Position)</div>
+            <p id="rJobTarget" style="font-size: 14px; margin:0; font-weight:bold; color:#1d4ed8;"></p>
+        </div>
+
+        <div>
+            <div class="resume-section-title">تعلیمی قابلیت (Education)</div>
+            <p id="rEdu" style="font-size: 13px; margin:0; line-height: 1.6; white-space: pre-line;"></p>
+        </div>
+
+        <div>
+            <div class="resume-section-title">تجربہ اور ہنر (Experience & Skills)</div>
+            <p id="rExp" style="font-size: 13px; margin:0; line-height: 1.6; white-space: pre-line;"></p>
+        </div>
+
+        <div style="text-align: center; margin-top: 35px;" class="no-print">
+            <a id="officialApplyLink" href="#" target="_blank" style="text-decoration: none;">
+                <button class="btn btn-apply">🚀 آفیشل ویب سائٹ پر فائنل اپلائی کریں</button>
+            </a>
+            <button class="btn btn-print" onclick="window.print()">🖨️ سی وی پرنٹ یا PDF محفوظ کریں</button>
+            <button class="btn btn-back" onclick="goBackToForm()">🔙 سی وی میں دوبارہ تبدیلی کریں</button>
+        </div>
+    </div>
+
+    <div style="text-align: center; font-size: 11px; margin-top: 25px; color: #64748b;" class="no-print">
+        &copy; 2026 Addi Tech Jobs AI CV Maker. All Rights Reserved.
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY_ARTICLES = 'additech_portal_articles_v6';
+
+    const DEFAULT_JOBS = {
+        wapda: {
+            label: "محکمہ واپڈا پاکستان (WAPDA)",
+            h1: "واپڈا میں نئے فنی اور الیکٹرک کیبل ورکرز کی بھرتی 2026",
+            h2: "تعلیمی قابلیت اور بھرتی کا طریقہ کار",
+            h3: "واپڈا کی طرف سے نئے مالی سال کے لیے میٹر ریڈر، لائن مین اور کلرک کی اسامیوں کا اعلان کر دیا گیا ہے۔ تمام اہل امیدوار نیچے فارم سے اپنی مرضی کی سی وی بنا کر اپلائی کریں۔",
+            image: "",
+            ctaTitle: "⚡ واپڈا کی مزید نئی اسامیاں یہاں دیکھیں",
+            ctaUrl: "https://wapda.gov.pk",
+            url: "https://wapda.gov.pk"
+        },
+        army: {
+            label: "پاک آرمی سلیکشن اینڈ ریکروٹمنٹ",
+            h1: "پاک آرمی میں بطور سپاہی اور کلرک شاندار بھرتی 2026",
+            h2: "اہلیت اور جسمانی معیارات کی تفصیل",
+            h3: "پاک آرمی میں کم از کم میٹرک اور انٹرمیڈیٹ پاس نوجوانوں کے لیے شاندار مواقع کا اعلان کر دیا گیا ہے۔ فوری طور پر اپنی سی وی تیار کر کے رجسٹریشن کریں۔",
+            image: "",
+            ctaTitle: "🎖️ پاک آرمی رجسٹریشن کا مکمل طریقہ کار",
+            ctaUrl: "https://joinpakarmy.gov.pk",
+            url: "https://joinpakarmy.gov.pk"
+        },
+        police: {
+            label: "پولیس ڈیپارٹمنٹ (Punjab & Federal Police)",
+            h1: "پولیس کانسٹیبل اور ٹریفک وارڈن جابز 2026",
+            h2: "امیدواروں کے لیے شرائط و ضوابط",
+            h3: "پولیس محکمہ میں مرد و خواتین کے لیے کانسٹیبل کی خالی اسامیوں پر درخواستیں طلب کی گئی ہیں۔ جسمانی معیار پر پورا اترنے والے امیدوار اپلائی کریں۔",
+            image: "",
+            ctaTitle: "🛡️ پنجاب پولیس میرٹ لسٹ اور سلیکشن پورٹل",
+            ctaUrl: "https://punjabpolice.gov.pk",
+            url: "https://punjabpolice.gov.pk"
+        },
+        gov: {
+            label: "حکومتِ پاکستان / فیڈرل گورنمنٹ",
+            h1: "وفاقی وزارتوں اور ڈویژنوں میں گریڈ 1 سے 15 تک کی جابز",
+            h2: "درخواست جمع کروانے کا طریقہ",
+            h3: "فیڈرل گورنمنٹ کی طرف سے ملک بھر کے لیے سرکاری نوکریوں کا نیا اشتہار جاری کر دیا گیا ہے۔ میٹرک سے گریجویشن والے اپلائی کر سکتے ہیں۔",
+            image: "",
+            ctaTitle: "🏛️ تمام فیڈرل گورنمنٹ جابز کے لیے کلک کریں",
+            ctaUrl: "https://fpsc.gov.pk",
+            url: "https://fpsc.gov.pk"
+        }
+    };
+
+    function formatText(command, value = null) {
+        document.execCommand(command, false, value);
+    }
+
+    function getArticles() {
+        const saved = localStorage.getItem(STORAGE_KEY_ARTICLES);
+        return saved ? JSON.parse(saved) : DEFAULT_JOBS;
+    }
+
+    function toggleAdminPanel() {
+        const panel = document.getElementById('adminPanel');
+        if(panel.style.display === 'block') {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = 'block';
+            loadCurrentCategoryToAdmin();
+        }
+    }
+
+    function loadCurrentCategoryToAdmin() {
+        const cat = document.getElementById('jobCategorySelect').value;
+        const articles = getArticles();
+        const job = articles[cat] || DEFAULT_JOBS[cat];
+
+        document.getElementById('admCategory').value = cat;
+        document.getElementById('admMeta').value = job.meta || '';
+        document.getElementById('admH1').value = job.h1 || '';
+        document.getElementById('admH2').value = job.h2 || '';
+        document.getElementById('admContentEditor').innerHTML = job.h3 || '';
+        document.getElementById('admCtaTitle').value = job.ctaTitle || '';
+        document.getElementById('admCtaUrl').value = job.ctaUrl || '';
+        document.getElementById('admUrl').value = job.url || '';
+    }
+
+    function publishArticle() {
+        const cat = document.getElementById('admCategory').value;
+        const meta = document.getElementById('admMeta').value;
+        const h1 = document.getElementById('admH1').value;
+        const h2 = document.getElementById('admH2').value;
+        const h3 = document.getElementById('admContentEditor').innerHTML;
+        const ctaTitle = document.getElementById('admCtaTitle').value;
+        const ctaUrl = document.getElementById('admCtaUrl').value;
+        const url = document.getElementById('admUrl').value;
+
+        if(!h1 || !h3) {
+            alert('براہ کرم کم از کم H1 ٹائٹل اور آرٹیکل کا مواد لازمی درج کریں!');
+            return;
+        }
+
+        const fileInput = document.getElementById('admImageFile');
+        let imageData = "";
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageData = e.target.result;
+                saveDataAndPublish(cat, meta, h1, h2, h3, imageData, ctaTitle, ctaUrl, url);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            let articles = getArticles();
+            imageData = articles[cat] ? articles[cat].image : "";
+            saveDataAndPublish(cat, meta, h1, h2, h3, imageData, ctaTitle, ctaUrl, url);
+        }
+    }
+
+    function saveDataAndPublish(cat, meta, h1, h2, h3, image, ctaTitle, ctaUrl, url) {
+        let articles = getArticles();
+        articles[cat] = {
+            label: document.getElementById('admCategory').options[document.getElementById('admCategory').selectedIndex].text,
+            meta: meta,
+            h1: h1,
+            h2: h2,
+            h3: h3,
+            image: image,
+            ctaTitle: ctaTitle,
+            ctaUrl: ctaUrl || 'https://google.com',
+            url: url || 'https://google.com'
+        };
+
+        localStorage.setItem(STORAGE_KEY_ARTICLES, JSON.stringify(articles));
+        alert('🎉 آرٹیکل اور ایڈیٹر سیٹنگز کامیابی کے ساتھ پبلش ہو گئی ہیں!');
+        
+        document.getElementById('jobCategorySelect').value = cat;
+        toggleAdminPanel();
+        renderSelectedCategory();
+    }
+
+    function renderSelectedCategory() {
+        const selectedCat = document.getElementById('jobCategorySelect').value;
+        const articles = getArticles();
+        const job = articles[selectedCat] || DEFAULT_JOBS[selectedCat];
+
+        document.getElementById('displayCategoryLabel').innerText = job.label;
+        document.getElementById('displayH1').innerText = job.h1;
+        document.getElementById('displayH2').innerText = job.h2;
+        document.getElementById('displayH3').innerHTML = job.h3;
+        document.getElementById('officialApplyLink').href = job.url;
+
+        const imgElement = document.getElementById('displayArticleImage');
+        if (job.image) {
+            imgElement.src = job.image;
+            imgElement.style.display = 'block';
+        } else {
+            imgElement.style.display = 'none';
+        }
+
+        const ctaBox = document.getElementById('displayCtaBox');
+        const ctaTitleEl = document.getElementById('displayCtaTitle');
+        const ctaBtnEl = document.getElementById('displayCtaBtn');
+
+        if (job.ctaTitle) {
+            ctaTitleEl.innerText = job.ctaTitle;
+            ctaBtnEl.href = job.ctaUrl || 'https://google.com';
+            ctaBox.style.display = 'block';
+        } else {
+            ctaBox.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        renderSelectedCategory();
+    };
+
+    function generateCustomCV() {
+        const name = document.getElementById('cvName').value;
+        const father = document.getElementById('cvFather').value;
+        const phone = document.getElementById('cvPhone').value;
+        const email = document.getElementById('cvEmail').value;
+        const address = document.getElementById('cvAddress').value;
+        const targetJob = document.getElementById('cvTargetJob').value;
+        const edu = document.getElementById('cvEdu').value;
+        const exp = document.getElementById('cvExp').value;
+
+        if(!name || !phone) {
+            alert('براہ کرم کم از کم اپنا نام اور موبائل نمبر لازمی درج کریں!');
+            return;
+        }
+
+        document.getElementById('rName').innerText = name;
+        document.getElementById('rFather').innerText = father || '---';
+        document.getElementById('rPhone').innerText = phone;
+        document.getElementById('rEmail').innerText = email || '---';
+        document.getElementById('rAddress').innerText = address || 'پاکستان';
+        document.getElementById('rJobTarget').innerText = targetJob || 'جنرل اسامی';
+        document.getElementById('rEdu').innerText = edu || 'تعلیم کی تفصیل درج نہیں کی گئی';
+        document.getElementById('rExp').innerText = exp || 'فریش / تجربہ درج نہیں کیا گیا';
+
+        document.getElementById('formApp').style.display = 'none';
+        document.getElementById('jobArticleSection').style.display = 'none';
+        document.getElementById('resumePreview').style.display = 'block';
+    }
+
+    function goBackToForm() {
+        document.getElementById('resumePreview').style.display = 'none';
+        document.getElementById('formApp').style.display = 'block';
+        document.getElementById('jobArticleSection').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
+qq thin
